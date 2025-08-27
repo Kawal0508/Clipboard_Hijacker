@@ -65,6 +65,49 @@ python Clipboard_Hijacker_Tool.py
 Notes:
 - Wrapper does not change behavior; logging remains local-only.
 
+## Testing the Local Test Tool
+
+### Prerequisites
+- Python 3.8+ installed
+- Dependencies installed: `pip install -r requirements.txt`
+
+### Step-by-Step Test
+1. **Set clipboard content** (copy any text to clipboard)
+2. **Run the tool**:
+   ```bash
+   python Clipboard_Hijacker_local_Test_Tool.py
+   ```
+3. **Verify output**: You should see:
+   - Console output showing clipboard content
+   - Log entry in `~/clipboard_log.txt`
+   - App logs in `~/clipboard_logger_app.log`
+4. **Stop the tool**: Press `Ctrl+C` to exit
+
+### Quick Test Commands
+```bash
+# Set test clipboard content
+Set-Clipboard "test-clipboard-content"
+
+# Run tool briefly (4 seconds)
+$proc = Start-Process -FilePath python -ArgumentList 'Clipboard_Hijacker_local_Test_Tool.py' -PassThru
+Start-Sleep -Seconds 4
+Stop-Process -Id $proc.Id -Force
+
+# Check captured content
+Get-Content "$env:USERPROFILE\clipboard_log.txt" -Tail 10
+```
+
+### Expected Results
+- Tool starts monitoring clipboard
+- Captures clipboard changes and logs them with timestamps
+- No network activity or persistence
+- Clean exit with `Ctrl+C`
+
+### Troubleshooting
+- **Import errors**: Ensure `pip install -r requirements.txt` completed successfully
+- **Permission issues**: Run in a directory you have write access to
+- **Clipboard access**: Some applications may restrict clipboard access
+
 # Building a local executable (no network, no persistence)
 
 You can package the script into a standalone Windows executable for your own use.

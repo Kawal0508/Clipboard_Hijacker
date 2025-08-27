@@ -12,14 +12,14 @@ This tool monitors your clipboard and appends copied text to a local file for yo
 - Simple, minimal codebase
 - No network, no persistence
 
-## Installation
+# Installation
 ```bash
 pip install -r requirements.txt
 ```
 
-## Per-file guide
+# Per-file guide
 
-### Clipboard_Hijacker_local_Test_Tool.py (primary script)
+## Clipboard_Hijacker_local_Test_Tool.py (primary script)
 - Purpose: Local-only clipboard logger for ethical, consent-based use.
 - Behavior: Reads clipboard text periodically, prints to console, appends to a local log with timestamps. No network or persistence.
 
@@ -44,7 +44,7 @@ Ethical notes:
 - Avoid storing sensitive data; clear/rotate logs regularly.
 - Use only on systems/accounts where you have explicit permission.
 
-### Clipboard_Hijacker_Tool.py (wrapper/entry point)
+## Clipboard_Hijacker_Tool.py (wrapper/entry point)
 - Purpose: Convenience entry that should call the primary script’s `main`.
 - Recommended content:
   - Import `main` from `Clipboard_Hijacker_local_Test_Tool.py` and invoke it.
@@ -65,7 +65,7 @@ python Clipboard_Hijacker_Tool.py
 Notes:
 - Wrapper does not change behavior; logging remains local-only.
 
-## Building a local executable (no network, no persistence)
+# Building a local executable (no network, no persistence)
 
 You can package the script into a standalone Windows executable for your own use.
 
@@ -86,7 +86,7 @@ Notes:
 - The `--console` flag keeps a console window so you can stop with Ctrl+C and see logs.
 - This executable behaves exactly like the script: local-only logging, no network.
 
-## Optional: simple .bat launcher for local use
+# Optional: simple .bat launcher for local use
 
 If you prefer to run the Python script via a batch file, create `run_clipboard_logger.bat` alongside the script with the following content and adjust the Python path as needed:
 
@@ -102,25 +102,25 @@ endlocal
 
 Double-clicking the `.bat` will launch the logger in a console window. This is strictly a local launcher and does not add any persistence.
 
-## Important ethical boundary
+# Important ethical boundary
 
 This project does not include, and will not document, any techniques for concealing payloads, steganography, or any form of data exfiltration. The build instructions above are provided solely for benign, consent-based, local usage.
 
-## Configuration
+# Configuration
 Small tweaks can be made by editing constants at the top of `clipboard_hijacker.py`:
 - `LOG_PATH`: where clipboard entries are stored
 - `POLL_INTERVAL_SECONDS`: how often the clipboard is checked
 
-## Ethical Scope
+# Ethical Scope
 - This project intentionally excludes email integration, webhooks, or any exfiltration.
 - The code and this README do not include instructions for adding any outbound channels.
 - If you need notifications or syncing, use legitimate, opt-in tools (e.g., cloud notes, password managers).
 
-## Development
+# Development
 - Python 3.8+
 - Windows 10/11 recommended (uses `pyperclip`)
 
-## Troubleshooting
+# Troubleshooting
 1. Clipboard read errors: some apps restrict access; try copying plain text.
 2. Non-ASCII text issues: the logger writes UTF-8 and ignores invalid sequences.
 3. Antivirus warnings: the script is local-only; consider adding a local exclusion if needed.
